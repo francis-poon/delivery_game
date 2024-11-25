@@ -1,0 +1,321 @@
+[gd_scene load_steps=18 format=3 uid="uid://irp5agjsi6p7"]
+
+[ext_resource type="PackedScene" uid="uid://di884s3kqjdud" path="res://shop_item.tscn" id="1_dqtm4"]
+[ext_resource type="Script" path="res://shop.gd" id="1_uqk1t"]
+[ext_resource type="Script" path="res://tile_scale_container.gd" id="1_xhvl0"]
+[ext_resource type="Texture2D" uid="uid://7y68jtlnp63l" path="res://assets/[BDragon1727] Pixel UI pack 3/00.png" id="2_0lih0"]
+[ext_resource type="Texture2D" uid="uid://xhy8vvgk4edf" path="res://assets/[BDragon1727] Pixel UI pack 3/07.png" id="4_rtpm1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt12c"]
+atlas = ExtResource("2_0lih0")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45duu"]
+bg_color = Color(0.392157, 0.4, 0.458824, 0.32549)
+
+[sub_resource type="Theme" id="Theme_j4wsw"]
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/styles/normal = SubResource("StyleBoxFlat_45duu")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lea05"]
+atlas = ExtResource("4_rtpm1")
+region = Rect2(65, 177, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ur8bk"]
+texture = SubResource("AtlasTexture_lea05")
+texture_margin_left = 8.0
+texture_margin_top = 9.0
+texture_margin_right = 8.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjiq2"]
+atlas = ExtResource("2_0lih0")
+region = Rect2(144, 18, 32, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ythj"]
+texture = SubResource("AtlasTexture_yjiq2")
+texture_margin_left = 3.0
+texture_margin_top = 5.0
+texture_margin_right = 3.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1aes"]
+atlas = ExtResource("2_0lih0")
+region = Rect2(16, 18, 32, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6d4l1"]
+texture = SubResource("AtlasTexture_o1aes")
+texture_margin_left = 3.0
+texture_margin_top = 5.0
+texture_margin_right = 3.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fvbg"]
+atlas = ExtResource("2_0lih0")
+region = Rect2(80, 18, 32, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xy0q6"]
+texture = SubResource("AtlasTexture_8fvbg")
+texture_margin_left = 3.0
+texture_margin_top = 5.0
+texture_margin_right = 3.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_cyd87"]
+Button/styles/focus = SubResource("StyleBoxTexture_ur8bk")
+Button/styles/hover = SubResource("StyleBoxTexture_4ythj")
+Button/styles/normal = SubResource("StyleBoxTexture_6d4l1")
+Button/styles/pressed = SubResource("StyleBoxTexture_xy0q6")
+
+[node name="Shop" type="Control" node_paths=PackedStringArray("shop_item_container", "shop_item_description", "transaction_quantity", "inventory_quantity", "item_info_panel_content", "item_cost_label")]
+texture_filter = 1
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -552.0
+offset_bottom = -348.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uqk1t")
+shop_item_res = ExtResource("1_dqtm4")
+shop_item_container = NodePath("HBoxContainer/ScrollContainer/ShopItemContainer")
+shop_item_description = NodePath("HBoxContainer/ItemInfoPanel/Content/MarginContainer/ItemDescriptionLabel")
+transaction_quantity = NodePath("HBoxContainer/ItemInfoPanel/Content/QuantitySpinBox")
+inventory_quantity = NodePath("HBoxContainer/ItemInfoPanel/Content/ItemQuantity/ItemQuantityCount")
+item_info_panel_content = NodePath("HBoxContainer/ItemInfoPanel/Content")
+item_cost_label = NodePath("HBoxContainer/ItemInfoPanel/Content/ItemCost/ItemCostTotal")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopItemContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="ShopItem" parent="HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
+layout_mode = 2
+
+[node name="ShopItem2" parent="HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
+layout_mode = 2
+
+[node name="ShopItem3" parent="HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
+layout_mode = 2
+
+[node name="ShopItem4" parent="HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
+layout_mode = 2
+
+[node name="ItemInfoPanel" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TileScaleContainer" type="Container" parent="HBoxContainer/ItemInfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_xhvl0")
+tile_scale = 2.5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/ItemInfoPanel/TileScaleContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_xt12c")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Content" type="Control" parent="HBoxContainer/ItemInfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuantitySpinBox" type="SpinBox" parent="HBoxContainer/ItemInfoPanel/Content"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.325
+offset_top = -50.225
+offset_right = 105.387
+offset_bottom = -19.225
+grow_vertical = 0
+theme = SubResource("Theme_j4wsw")
+min_value = 1.0
+value = 1.0
+
+[node name="Buy" type="Control" parent="HBoxContainer/ItemInfoPanel/Content"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -87.0
+offset_top = -84.0
+offset_right = -22.0
+offset_bottom = -55.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TileScaleContainer2" type="Container" parent="HBoxContainer/ItemInfoPanel/Content/Buy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhvl0")
+tile_scale = 2.0
+
+[node name="Button" type="Button" parent="HBoxContainer/ItemInfoPanel/Content/Buy/TileScaleContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_cyd87")
+
+[node name="Label" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/Buy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "BUY
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sell" type="Control" parent="HBoxContainer/ItemInfoPanel/Content"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -87.0
+offset_top = -51.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TileScaleContainer2" type="Container" parent="HBoxContainer/ItemInfoPanel/Content/Sell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhvl0")
+tile_scale = 2.0
+
+[node name="Button" type="Button" parent="HBoxContainer/ItemInfoPanel/Content/Sell/TileScaleContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_cyd87")
+
+[node name="Label" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/Sell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "SELL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemQuantity" type="HBoxContainer" parent="HBoxContainer/ItemInfoPanel/Content"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -88.0
+offset_right = 112.0
+offset_bottom = -48.0
+grow_vertical = 0
+
+[node name="ItemQuantityLabel" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/ItemQuantity"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Count:"
+
+[node name="ItemQuantityCount" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/ItemQuantity"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="ItemCost" type="HBoxContainer" parent="HBoxContainer/ItemInfoPanel/Content"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -114.0
+offset_right = -17.0
+offset_bottom = -84.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ItemCostTotal" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/ItemCost"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ItemCostUnit" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/ItemCost"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "g"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ItemInfoPanel/Content"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 87.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+
+[node name="ItemDescriptionLabel" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/MarginContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Description Description Description Description Description "
+autowrap_mode = 2
+
+[connection signal="value_changed" from="HBoxContainer/ItemInfoPanel/Content/QuantitySpinBox" to="." method="_on_quantity_spin_box_value_changed"]
+[connection signal="pressed" from="HBoxContainer/ItemInfoPanel/Content/Buy/TileScaleContainer2/Button" to="." method="_on_buy"]
+[connection signal="pressed" from="HBoxContainer/ItemInfoPanel/Content/Sell/TileScaleContainer2/Button" to="." method="_on_sell"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://d03pw3ya3wrj5"]
+
+[ext_resource type="Script" path="res://stage_manager.gd" id="1_kyaaf"]
+[ext_resource type="PackedScene" uid="uid://c6c3lkn26t5d0" path="res://stages/stage_a.tscn" id="2_otsri"]
+[ext_resource type="PackedScene" uid="uid://b4n77golip3n4" path="res://stages/stage_b.tscn" id="3_pim65"]
+[ext_resource type="PackedScene" uid="uid://qhftri4ij2kg" path="res://stages/stage_warp.tscn" id="4_mojkc"]
+[ext_resource type="PackedScene" uid="uid://bs6crttfharup" path="res://stages/stage_unknown.tscn" id="5_sugm3"]
+
+[node name="StageManager" type="Node2D"]
+script = ExtResource("1_kyaaf")
+stages = {
+"a": ExtResource("2_otsri"),
+"b": ExtResource("3_pim65")
+}
+warp_stage = ExtResource("4_mojkc")
+unknown_stage = ExtResource("5_sugm3")

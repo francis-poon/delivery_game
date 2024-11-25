@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://bow6is3n6phr0"]
+
+[ext_resource type="PackedScene" uid="uid://dyw3utoer4jgb" path="res://inventory.tscn" id="1_dujxd"]
+[ext_resource type="Script" path="res://gui.gd" id="1_jk817"]
+[ext_resource type="PackedScene" uid="uid://irp5agjsi6p7" path="res://shop.tscn" id="2_12tpa"]
+[ext_resource type="PackedScene" uid="uid://c6c3lkn26t5d0" path="res://map.tscn" id="3_fxgga"]
+[ext_resource type="PackedScene" uid="uid://bvc2a2ap2c4cf" path="res://interactable.tscn" id="4_4powt"]
+[ext_resource type="Texture2D" uid="uid://b3t7eyoh3onp5" path="res://assets/Sprout Lands - Sprites - Basic pack/Objects/Chest.png" id="4_ecwgn"]
+[ext_resource type="PackedScene" uid="uid://dib4ff1qqkdph" path="res://player.tscn" id="5_g1by3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37wug"]
+atlas = ExtResource("4_ecwgn")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wedc"]
+radius = 17.0
+
+[node name="Main" type="Node2D"]
+texture_filter = 1
+
+[node name="GUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("shop", "inventory")]
+unique_name_in_owner = true
+script = ExtResource("1_jk817")
+shop = NodePath("Shop")
+inventory = NodePath("Inventory")
+
+[node name="Inventory" parent="GUI" instance=ExtResource("1_dujxd")]
+visible = false
+
+[node name="Shop" parent="GUI" instance=ExtResource("2_12tpa")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+
+[node name="Map" parent="." instance=ExtResource("3_fxgga")]
+
+[node name="Interactable" parent="Map" instance=ExtResource("4_4powt")]
+position = Vector2(58, 38)
+
+[node name="Sprite2D" parent="Map/Interactable" index="0"]
+texture = SubResource("AtlasTexture_37wug")
+
+[node name="CollisionShape2D" parent="Map/Interactable/Area2D" index="0"]
+shape = SubResource("CircleShape2D_2wedc")
+
+[node name="Player" parent="." instance=ExtResource("5_g1by3")]
+speed = 50
+
+[connection signal="inventory_update" from="GUI/Inventory" to="GUI/Shop" method="_on_inventory_update"]
+[connection signal="buy" from="GUI/Shop" to="GUI/Inventory" method="_on_buy"]
+[connection signal="inventory_request" from="GUI/Shop" to="GUI/Inventory" method="_on_inventory_request"]
+[connection signal="sell" from="GUI/Shop" to="GUI/Inventory" method="_on_sell"]
+
+[editable path="Map/Interactable"]

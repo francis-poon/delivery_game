@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvc2a2ap2c4cf"]
+
+[ext_resource type="Script" path="res://interactable.gd" id="1_ks38m"]
+[ext_resource type="Resource" uid="uid://dso0qv47ed8yt" path="res://resources/shop_data.tres" id="2_jmr83"]
+
+[node name="Interactable" type="Node2D"]
+script = ExtResource("1_ks38m")
+data = ExtResource("2_jmr83")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ckr3pafs4g6sp"]
+
+[ext_resource type="Script" path="res://resources/shop_item_data.gd" id="1_3rdqr"]
+
+[resource]
+script = ExtResource("1_3rdqr")
+health = 0
+strings = PackedStringArray()
+name = ""
+description = ""

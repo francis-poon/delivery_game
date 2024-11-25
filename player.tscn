@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dib4ff1qqkdph"]
+
+[ext_resource type="Texture2D" uid="uid://w4vdgffpxg0d" path="res://assets/[9E0] Meow Knight/Meow-Knight_Idle.png" id="1_mabb1"]
+[ext_resource type="Script" path="res://player.gd" id="1_wn1w7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tu48l"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p08ma"]
+atlas = ExtResource("1_mabb1")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Player" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_wn1w7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tu48l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_p08ma")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5.875, 5.875)
+
+[connection signal="area_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
