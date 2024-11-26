@@ -1,6 +1,6 @@
 extends Node2D
 
-signal stage_changed(stage_name: String)
+signal stage_changed(stage_name: String, spawn_pos: Vector2)
 signal warp_complete(stage_name: String)
 
 @export var stages: Dictionary
@@ -52,7 +52,7 @@ func set_stage(stage_name: String):
 	add_child(current_stage)
 	
 func _on_stage_changed():
-	stage_changed.emit(current_stage.name)
+	stage_changed.emit(current_stage.name, current_stage.spawn_pos)
 	
 func _on_new_destination(p_destination: String, p_travel_time: int):
 	destination = p_destination
