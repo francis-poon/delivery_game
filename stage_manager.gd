@@ -1,6 +1,6 @@
 extends Node2D
 
-signal stage_changed(stage_name: String)
+signal stage_changed(stage_name: String, spawn_pos: Vector2)
 signal warp_complete(stage_name: String)
 
 @export var stages: Dictionary
@@ -10,7 +10,7 @@ signal warp_complete(stage_name: String)
 var destination: String = ""
 var travel_time: int = 0
 
-var current_stage: Node:
+var current_stage: Stage:
 	set(value):
 		current_stage = value
 		_on_stage_changed()
@@ -25,14 +25,18 @@ func _process(delta):
 	pass
 	
 func run_warp_drive():
-	if destination == "" or destination == current_stage.name:
+	if destination == "" or destination == current_stage.id:
 		return
 	remove_child(current_stage)
 	current_stage.queue_free()
-	current_stage = warp_stage.instantiate()
-	current_stage.set_destination(destination, travel_time)
-	current_stage.destination_arrived.connect(_on_warp_complete)
-	add_child(current_stage)
+	
+	var new_stage = warp_stage.instantiate()
+	new_stage.set_destination(destination, travel_time)
+	new_stage.destination_arrived.connect(_on_warp_complete)
+	print("Warp spawn pos: {0}".format([current_stage.spawn_pos]))
+	add_child(new_stage)
+	print("Warp spawn pos: {0}".format([current_stage.spawn_pos]))
+	current_stage = new_stage
 	current_stage.start()
 	
 func _on_warp_complete(stage_name: String):
@@ -52,7 +56,7 @@ func set_stage(stage_name: String):
 	add_child(current_stage)
 	
 func _on_stage_changed():
-	stage_changed.emit(current_stage.name)
+	stage_changed.emit(current_stage.id, current_stage.spawn_pos)
 	
 func _on_new_destination(p_destination: String, p_travel_time: int):
 	destination = p_destination

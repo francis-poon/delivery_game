@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp3rpn2lvuu4x"]
+
+[ext_resource type="Script" path="res://test/scrolling_background.gd" id="1_7r5hd"]
+[ext_resource type="Texture2D" uid="uid://xlux6y1ljg6l" path="res://test/scroll_texture.tres" id="2_h3lwx"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("scroll_sprite", "scroll_sprite_2")]
+script = ExtResource("1_7r5hd")
+scroll_sprite = NodePath("SpaceBg(2Frames)(64X64)")
+scroll_sprite_2 = NodePath("SpaceBg(2Frames)(64X64)2")
+
+[node name="SpaceBg(2Frames)(64X64)" type="Sprite2D" parent="."]
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_h3lwx")
+hframes = 2
+
+[node name="SpaceBg(2Frames)(64X64)2" type="Sprite2D" parent="."]
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_h3lwx")
+offset = Vector2(0, -64)
+hframes = 2

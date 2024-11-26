@@ -2,7 +2,12 @@ extends Control
 
 signal new_destination_selected(destination: String, travel_time: int)
 
-var current_location: String = ""
+@export var current_location_text: Label
+
+var current_location: String = "":
+	set(value):
+		current_location = value
+		current_location_text.text = value
 var destination: String = ""
 
 func _ready():
@@ -15,7 +20,7 @@ func _on_button_pressed(p_destination: String):
 	new_destination_selected.emit(destination, travel_time)
 	
 func get_travel_time(point_a: String, point_b: String) -> int:
-	return 5
+	return 20
 	
 func _input(event: InputEvent):
 	if event.is_action_pressed("toggle_map"):
@@ -24,5 +29,5 @@ func _input(event: InputEvent):
 func _on_destination_arrived(p_destination: String):
 	current_location = p_destination
 	destination = ""
-	print("Arrived at {0}".format([current_location]))
+	print("Map at {0}".format([current_location]))
 	new_destination_selected.emit(destination, 0)
