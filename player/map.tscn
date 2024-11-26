@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player/poi_button.gd" id="1_g5qf6"]
 [ext_resource type="Script" path="res://player/map.gd" id="1_ut5qo"]
 
-[node name="Map" type="Control"]
+[node name="Map" type="Control" node_paths=PackedStringArray("current_location_text")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ut5qo")
+current_location_text = NodePath("CurrentLocation/CurrentLocationText")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -37,3 +38,25 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("1_g5qf6")
 poi = "b"
+
+[node name="CurrentLocation" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 162.0
+grow_vertical = 0
+
+[node name="CurrentLocationLabel" type="Label" parent="CurrentLocation"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Location:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CurrentLocationText" type="Label" parent="CurrentLocation"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "a"
+vertical_alignment = 1

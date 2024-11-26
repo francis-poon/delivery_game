@@ -1,43 +1,57 @@
-extends Area2D
+extends CharacterBody2D
 
 signal hit
 signal warp_drive
 
+enum CameraMode { FOLLOW, STATIC }
+enum ControlMode { SPIN, STRAFE }
+
 @export var speed = 400
+@export var rotation_speed = 10
+
+@export var camera: Camera2D
+
 var screen_size
+var control_mode: ControlMode
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	#hide()
+	$AnimationPlayer.play("booster")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
+
+func _physics_process(delta):
+	match control_mode:
+		ControlMode.SPIN:
+			var input_dir = Vector2.ZERO
+			var rotate_dir = 0
+			if Input.is_action_pressed("move_right"):
+				rotate_dir = 1
+			if Input.is_action_pressed("move_left"):
+				rotate_dir = -1
+			if Input.is_action_pressed("move_up"):
+				input_dir.y -= 1
+			if Input.is_action_pressed("move_down"):
+				input_dir.y += 1
+			velocity = input_dir.rotated(rotation) * speed
 		
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		#$AnimatedSprite2D.play()
-	#else:
-		#$AnimatedSprite2D.stop()
+			rotate(rotate_dir * rotation_speed * delta)
+			move_and_collide(velocity * delta)
+		ControlMode.STRAFE:
+			var input_dir = Vector2.ZERO
+			if Input.is_action_pressed("move_right"):
+				input_dir.x += 1
+			if Input.is_action_pressed("move_left"):
+				input_dir.x -= 1
+			if Input.is_action_pressed("move_up"):
+				input_dir.y -= 1
+			if Input.is_action_pressed("move_down"):
+				input_dir.y += 1
+			velocity = input_dir.rotated(rotation) * speed
 		
-	position += velocity * delta
-	#position = position.clamp(Vector2.ZERO, screen_size)
+			move_and_collide(velocity * delta)
+			
 	
-	#if velocity.x != 0:
-		#$AnimatedSprite2D.animation = "walk"
-		#$AnimatedSprite2D.flip_v = false
-		#$AnimatedSprite2D.flip_h = velocity.x < 0
-	#elif velocity.y != 0:
-		#$AnimatedSprite2D.animation = "up"
-		#$AnimatedSprite2D.flip_v = velocity.y > 0
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("warp_drive"):
@@ -46,7 +60,17 @@ func _input(event: InputEvent):
 func _on_body_entered(body):
 	print("player entered")
 	
-func start(pos):
-	position = pos
-	show()
-	$CollisionShape2D.disabled = false
+func set_camera_mode(mode: CameraMode):
+	match mode:
+		CameraMode.FOLLOW:
+			camera.enabled = true
+		CameraMode.STATIC:
+			camera.enabled = false
+			
+func set_control_mode(mode: ControlMode):
+	match mode:
+		ControlMode.SPIN:
+			control_mode = mode
+		ControlMode.STRAFE:
+			control_mode = mode
+			rotation = 0
