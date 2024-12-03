@@ -10,6 +10,7 @@ enum ControlMode { SPIN, STRAFE }
 @export var rotation_speed = 10
 
 @export var camera: Camera2D
+@export var _animation_tree: AnimationTree
 
 var screen_size
 var control_mode: ControlMode
@@ -34,6 +35,10 @@ func _physics_process(delta):
 			if Input.is_action_pressed("move_down"):
 				input_dir.y += 1
 			velocity = input_dir.rotated(rotation) * speed
+			
+			var animation_vector = input_dir
+			animation_vector.x = rotate_dir
+			_animation_tree.set("parameters/blend_position", animation_vector.normalized())
 		
 			rotate(rotate_dir * rotation_speed * delta)
 			move_and_collide(velocity * delta)
@@ -48,6 +53,8 @@ func _physics_process(delta):
 			if Input.is_action_pressed("move_down"):
 				input_dir.y += 1
 			velocity = input_dir.rotated(rotation) * speed
+			
+			_animation_tree.set("parameters/blend_position", velocity.normalized())
 		
 			move_and_collide(velocity * delta)
 			
