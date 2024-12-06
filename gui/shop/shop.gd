@@ -3,7 +3,7 @@ extends Control
 # Signals
 signal buy(item_name: StringName, quantity: int, cost: int)
 signal sell(item_name: StringName, quantity: int, cost: int)
-signal inventory_request(item_name: StringName)
+signal inventory_count_request(item_name: StringName)
 
 # Resources
 @export var shop_item_res: PackedScene
@@ -47,9 +47,9 @@ func _on_shop_item_selected(item_name: String, item_description: String, item_co
 	
 	# Update inventory quantity
 	# send signal asking for inventory information
-	# have listener that listens for inventory info and checks that the item
+	# TODO: have listener that listens for inventory info and checks that the item
 	# matches the one that the request was sent for?
-	inventory_request.emit(selected_item)
+	inventory_count_request.emit(selected_item)
 	
 func _on_buy():
 	# Grab quantity to buy
@@ -58,7 +58,7 @@ func _on_buy():
 	# Send signal with item, and quantity
 	if selected_item:
 		buy.emit(selected_item, buy_quantity, selected_item_cost)
-		inventory_request.emit(selected_item)
+		inventory_count_request.emit(selected_item)
 	
 func _on_sell():
 	# Grab quantity to sell
@@ -67,17 +67,19 @@ func _on_sell():
 	# Send signal with item and quantity
 	if selected_item:
 		sell.emit(selected_item, sell_quantity, selected_item_cost)
-		inventory_request.emit(selected_item)
+		inventory_count_request.emit(selected_item)
 	
 func _on_inventory_update(item_name: StringName, item_quantity: int):
 	# Update in inverntory quantity count
 	if item_name == selected_item:
 		inventory_quantity.text = str(item_quantity)
 		
+# TODO: Check where and if this is ever used
 func update_shop_data(shop_data: ShopData):
 	shop_item_data = shop_data.shop_items
 	refresh_shop_listing()
 	
+# Removes and repopulates shop menu items based off of shop_item_data resource
 func refresh_shop_listing():
 	item_info_panel_content.hide()
 	for child in shop_item_container.get_children():

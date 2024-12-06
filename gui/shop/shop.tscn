@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://irp5agjsi6p7"]
 
-[ext_resource type="PackedScene" uid="uid://di884s3kqjdud" path="res://shop_item.tscn" id="1_dqtm4"]
-[ext_resource type="Script" path="res://shop.gd" id="1_uqk1t"]
+[ext_resource type="PackedScene" uid="uid://di884s3kqjdud" path="res://gui/shop/shop_item.tscn" id="1_dqtm4"]
+[ext_resource type="Script" path="res://gui/shop/shop.gd" id="1_uqk1t"]
 [ext_resource type="Script" path="res://tile_scale_container.gd" id="1_xhvl0"]
 [ext_resource type="Texture2D" uid="uid://7y68jtlnp63l" path="res://assets/[BDragon1727] Pixel UI pack 3/00.png" id="2_0lih0"]
 [ext_resource type="Texture2D" uid="uid://xhy8vvgk4edf" path="res://assets/[BDragon1727] Pixel UI pack 3/07.png" id="4_rtpm1"]
@@ -74,53 +74,63 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -552.0
-offset_bottom = -348.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_uqk1t")
 shop_item_res = ExtResource("1_dqtm4")
-shop_item_container = NodePath("HBoxContainer/ScrollContainer/ShopItemContainer")
-shop_item_description = NodePath("HBoxContainer/ItemInfoPanel/Content/MarginContainer/ItemDescriptionLabel")
-transaction_quantity = NodePath("HBoxContainer/ItemInfoPanel/Content/QuantitySpinBox")
-inventory_quantity = NodePath("HBoxContainer/ItemInfoPanel/Content/ItemQuantity/ItemQuantityCount")
-item_info_panel_content = NodePath("HBoxContainer/ItemInfoPanel/Content")
-item_cost_label = NodePath("HBoxContainer/ItemInfoPanel/Content/ItemCost/ItemCostTotal")
+shop_item_container = NodePath("MarginContainer/HBoxContainer/ScrollContainer/ShopItemContainer")
+shop_item_description = NodePath("MarginContainer/HBoxContainer/ItemInfoPanel/Content/MarginContainer/ItemDescriptionLabel")
+transaction_quantity = NodePath("MarginContainer/HBoxContainer/ItemInfoPanel/Content/QuantitySpinBox")
+inventory_quantity = NodePath("MarginContainer/HBoxContainer/ItemInfoPanel/Content/ItemQuantity/ItemQuantityCount")
+item_info_panel_content = NodePath("MarginContainer/HBoxContainer/ItemInfoPanel/Content")
+item_cost_label = NodePath("MarginContainer/HBoxContainer/ItemInfoPanel/Content/ItemCost/ItemCostTotal")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
 grow_vertical = 2
+theme_override_constants/margin_right = 40
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ShopItemContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+[node name="ShopItemContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 1
 
-[node name="ShopItem" parent="HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
+[node name="ShopItem" parent="MarginContainer/HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
 layout_mode = 2
 
-[node name="ShopItem2" parent="HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
+[node name="ShopItem2" parent="MarginContainer/HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
 layout_mode = 2
 
-[node name="ShopItem3" parent="HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
+[node name="ShopItem3" parent="MarginContainer/HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
 layout_mode = 2
 
-[node name="ShopItem4" parent="HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
+[node name="ShopItem4" parent="MarginContainer/HBoxContainer/ScrollContainer/ShopItemContainer" instance=ExtResource("1_dqtm4")]
 layout_mode = 2
 
-[node name="ItemInfoPanel" type="Control" parent="HBoxContainer"]
+[node name="ItemInfoPanel" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TileScaleContainer" type="Container" parent="HBoxContainer/ItemInfoPanel"]
+[node name="TileScaleContainer" type="Container" parent="MarginContainer/HBoxContainer/ItemInfoPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,7 +141,7 @@ size_flags_horizontal = 3
 script = ExtResource("1_xhvl0")
 tile_scale = 2.5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/ItemInfoPanel/TileScaleContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/HBoxContainer/ItemInfoPanel/TileScaleContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_xt12c")
 patch_margin_left = 6
@@ -139,7 +149,7 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="Content" type="Control" parent="HBoxContainer/ItemInfoPanel"]
+[node name="Content" type="Control" parent="MarginContainer/HBoxContainer/ItemInfoPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,7 +157,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="QuantitySpinBox" type="SpinBox" parent="HBoxContainer/ItemInfoPanel/Content"]
+[node name="QuantitySpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -161,7 +171,7 @@ theme = SubResource("Theme_j4wsw")
 min_value = 1.0
 value = 1.0
 
-[node name="Buy" type="Control" parent="HBoxContainer/ItemInfoPanel/Content"]
+[node name="Buy" type="Control" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -175,7 +185,7 @@ offset_bottom = -55.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="TileScaleContainer2" type="Container" parent="HBoxContainer/ItemInfoPanel/Content/Buy"]
+[node name="TileScaleContainer2" type="Container" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/Buy"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -185,11 +195,11 @@ grow_vertical = 2
 script = ExtResource("1_xhvl0")
 tile_scale = 2.0
 
-[node name="Button" type="Button" parent="HBoxContainer/ItemInfoPanel/Content/Buy/TileScaleContainer2"]
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/Buy/TileScaleContainer2"]
 layout_mode = 2
 theme = SubResource("Theme_cyd87")
 
-[node name="Label" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/Buy"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/Buy"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,7 +213,7 @@ text = "BUY
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sell" type="Control" parent="HBoxContainer/ItemInfoPanel/Content"]
+[node name="Sell" type="Control" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -217,7 +227,7 @@ offset_bottom = -22.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="TileScaleContainer2" type="Container" parent="HBoxContainer/ItemInfoPanel/Content/Sell"]
+[node name="TileScaleContainer2" type="Container" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/Sell"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,11 +237,11 @@ grow_vertical = 2
 script = ExtResource("1_xhvl0")
 tile_scale = 2.0
 
-[node name="Button" type="Button" parent="HBoxContainer/ItemInfoPanel/Content/Sell/TileScaleContainer2"]
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/Sell/TileScaleContainer2"]
 layout_mode = 2
 theme = SubResource("Theme_cyd87")
 
-[node name="Label" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/Sell"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/Sell"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -244,7 +254,7 @@ text = "SELL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ItemQuantity" type="HBoxContainer" parent="HBoxContainer/ItemInfoPanel/Content"]
+[node name="ItemQuantity" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -255,19 +265,19 @@ offset_right = 112.0
 offset_bottom = -48.0
 grow_vertical = 0
 
-[node name="ItemQuantityLabel" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/ItemQuantity"]
+[node name="ItemQuantityLabel" type="Label" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/ItemQuantity"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Count:"
 
-[node name="ItemQuantityCount" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/ItemQuantity"]
+[node name="ItemQuantityCount" type="Label" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/ItemQuantity"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 
-[node name="ItemCost" type="HBoxContainer" parent="HBoxContainer/ItemInfoPanel/Content"]
+[node name="ItemCost" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -281,7 +291,7 @@ offset_bottom = -84.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="ItemCostTotal" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/ItemCost"]
+[node name="ItemCostTotal" type="Label" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/ItemCost"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -291,7 +301,7 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ItemCostUnit" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/ItemCost"]
+[node name="ItemCostUnit" type="Label" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/ItemCost"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -299,7 +309,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "g"
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ItemInfoPanel/Content"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -309,13 +319,13 @@ theme_override_constants/margin_left = 14
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 14
 
-[node name="ItemDescriptionLabel" type="Label" parent="HBoxContainer/ItemInfoPanel/Content/MarginContainer"]
+[node name="ItemDescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/ItemInfoPanel/Content/MarginContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Description Description Description Description Description "
 autowrap_mode = 2
 
-[connection signal="value_changed" from="HBoxContainer/ItemInfoPanel/Content/QuantitySpinBox" to="." method="_on_quantity_spin_box_value_changed"]
-[connection signal="pressed" from="HBoxContainer/ItemInfoPanel/Content/Buy/TileScaleContainer2/Button" to="." method="_on_buy"]
-[connection signal="pressed" from="HBoxContainer/ItemInfoPanel/Content/Sell/TileScaleContainer2/Button" to="." method="_on_sell"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/ItemInfoPanel/Content/QuantitySpinBox" to="." method="_on_quantity_spin_box_value_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ItemInfoPanel/Content/Buy/TileScaleContainer2/Button" to="." method="_on_buy"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ItemInfoPanel/Content/Sell/TileScaleContainer2/Button" to="." method="_on_sell"]

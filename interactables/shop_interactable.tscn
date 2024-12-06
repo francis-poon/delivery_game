@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdpfa76v2eoi7"]
+
+[ext_resource type="PackedScene" uid="uid://bvc2a2ap2c4cf" path="res://interactables/interactable.tscn" id="1_p3lx7"]
+[ext_resource type="Script" path="res://interactables/shop_interactable.gd" id="2_tl7c3"]
+[ext_resource type="Resource" uid="uid://dso0qv47ed8yt" path="res://resources/shop_data.tres" id="3_ox3y1"]
+[ext_resource type="Texture2D" uid="uid://drpsqlqrybbs3" path="res://assets/[Free Game Assets] free-drones-pack-pixel-art/1 Drones/1/Idle.png" id="3_v7kun"]
+[ext_resource type="PackedScene" uid="uid://irp5agjsi6p7" path="res://gui/shop/shop.tscn" id="4_le5hj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ud73j"]
+radius = 22.0
+
+[node name="ShopInteractable" node_paths=PackedStringArray("_shop_interface") instance=ExtResource("1_p3lx7")]
+texture_filter = 1
+script = ExtResource("2_tl7c3")
+_shop_interface = NodePath("CanvasLayer/Shop")
+data = ExtResource("3_ox3y1")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_v7kun")
+hframes = 4
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_ud73j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+
+[node name="Shop" parent="CanvasLayer" index="0" instance=ExtResource("4_le5hj")]
+
+[connection signal="buy" from="CanvasLayer/Shop" to="." method="_on_buy"]
+[connection signal="inventory_count_request" from="CanvasLayer/Shop" to="." method="_on_inventory_count_request"]
+[connection signal="sell" from="CanvasLayer/Shop" to="." method="_on_sell"]

@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2gfevptkhot1"]
+
+[ext_resource type="Script" path="res://gui/inventory/inventory_menu_item.gd" id="1_24x2k"]
+[ext_resource type="Script" path="res://tile_scale_container.gd" id="1_t2n6n"]
+[ext_resource type="Texture2D" uid="uid://7y68jtlnp63l" path="res://assets/[BDragon1727] Pixel UI pack 3/00.png" id="2_o3lru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27jq4"]
+atlas = ExtResource("2_o3lru")
+region = Rect2(0, 32, 48, 16)
+
+[node name="InventoryMenuItem" type="Control" node_paths=PackedStringArray("_item_name_label", "_count_label")]
+texture_filter = 1
+custom_minimum_size = Vector2(220, 60)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -932.0
+offset_bottom = -588.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_24x2k")
+_item_name_label = NodePath("MarginContainer/HBoxContainer/ColorRect")
+_count_label = NodePath("MarginContainer/HBoxContainer/ColorRect3")
+
+[node name="TileScaleContainer" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t2n6n")
+tile_scale = 2.5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TileScaleContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_27jq4")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "Test Item"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="ColorRect3" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
