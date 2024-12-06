@@ -1,0 +1,222 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyw3utoer4jgb"]
+
+[ext_resource type="Script" path="res://gui/inventory/inventory.gd" id="1_w0sq5"]
+[ext_resource type="Script" path="res://tile_scale_container.gd" id="2_r56y3"]
+[ext_resource type="Texture2D" uid="uid://7y68jtlnp63l" path="res://assets/[BDragon1727] Pixel UI pack 3/00.png" id="3_ynros"]
+[ext_resource type="PackedScene" uid="uid://d2gfevptkhot1" path="res://gui/inventory/inventory_menu_item.tscn" id="4_auhsk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjkus"]
+atlas = ExtResource("3_ynros")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="Theme" id="Theme_uwk8b"]
+
+[sub_resource type="FontVariation" id="FontVariation_wom6j"]
+spacing_glyph = 8
+
+[sub_resource type="Theme" id="Theme_dlhxu"]
+MarginContainer/constants/margin_bottom = 14
+MarginContainer/constants/margin_left = 16
+MarginContainer/constants/margin_right = 16
+MarginContainer/constants/margin_top = 14
+
+[node name="Inventory" type="Control" node_paths=PackedStringArray("_gold_amount_label", "_inventory_menu_container")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w0sq5")
+_gold_amount_label = NodePath("MarginContainer/VBoxContainer/GoldDisplay/Control2/HBoxContainer/GoldAmount")
+_inventory_menu_container = NodePath("MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_right = 90.0
+offset_bottom = 64.0
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 2
+
+[node name="Title" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="TileScaleContainer2" type="Container" parent="MarginContainer/VBoxContainer/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_r56y3")
+tile_scale = 2.5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Title/TileScaleContainer2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hjkus")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uwk8b")
+theme_override_colors/font_color = Color(0.800491, 0.800491, 0.800491, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = SubResource("FontVariation_wom6j")
+theme_override_font_sizes/font_size = 30
+text = "INVENTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InventoryItemList" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TileScaleContainer" type="Container" parent="MarginContainer/VBoxContainer/InventoryItemList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_r56y3")
+tile_scale = 2.5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/InventoryItemList/TileScaleContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hjkus")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InventoryItemList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_dlhxu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Item"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Count"
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InventoryMenuItem" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
+layout_mode = 2
+script = null
+
+[node name="InventoryMenuItem2" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
+layout_mode = 2
+script = null
+
+[node name="InventoryMenuItem3" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
+layout_mode = 2
+script = null
+
+[node name="InventoryMenuItem4" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
+layout_mode = 2
+script = null
+
+[node name="InventoryMenuItem5" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
+layout_mode = 2
+script = null
+
+[node name="InventoryMenuItem6" parent="MarginContainer/VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
+layout_mode = 2
+script = null
+
+[node name="GoldDisplay" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/GoldDisplay"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TileScaleContainer2" type="Container" parent="MarginContainer/VBoxContainer/GoldDisplay/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_r56y3")
+tile_scale = 2.5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/GoldDisplay/Control2/TileScaleContainer2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hjkus")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/GoldDisplay/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GoldAmount" type="Label" parent="MarginContainer/VBoxContainer/GoldDisplay/Control2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+
+[node name="GoldUnitsLabel" type="Label" parent="MarginContainer/VBoxContainer/GoldDisplay/Control2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "g"

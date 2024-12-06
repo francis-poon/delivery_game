@@ -1,18 +1,20 @@
 extends CanvasLayer
 
-@export var shop: Control
-@export var inventory: Control
+@export var _shop: Control
+@export var _inventory: Control
+@export var _map: Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for child in get_children():
-		if child.name == "Shop":
-			child.hide()
+		child.hide()
 
+func _input(event: InputEvent):
+	if event.is_action_pressed("toggle_map"):
+		_map.visible = !_map.visible
+	if event.is_action_pressed("toggle_inventory"):
+		_inventory.visible = !_inventory.visible
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
 func show_gui(gui_name: String) -> void:
 	var target_gui: Array = find_children(gui_name, "Control", false, true)

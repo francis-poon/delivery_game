@@ -10,8 +10,6 @@ var current_location: String = "":
 		current_location_text.text = value
 var destination: String = ""
 
-func _ready():
-	hide()
 
 func _on_button_pressed(p_destination: String):
 	print("{0} selected".format([p_destination]))
@@ -22,9 +20,6 @@ func _on_button_pressed(p_destination: String):
 func get_travel_time(point_a: String, point_b: String) -> int:
 	return 20
 	
-func _input(event: InputEvent):
-	if event.is_action_pressed("toggle_map"):
-		visible = !visible
 		
 func _on_destination_arrived(p_destination: String):
 	current_location = p_destination

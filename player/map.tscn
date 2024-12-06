@@ -39,6 +39,18 @@ size_flags_vertical = 3
 script = ExtResource("1_g5qf6")
 poi = "b"
 
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_g5qf6")
+poi = "asteroid_field_a"
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_g5qf6")
+poi = "space_station_a"
+
 [node name="CurrentLocation" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
