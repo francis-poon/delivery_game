@@ -14,6 +14,11 @@ enum ControlMode { SPIN, STRAFE }
 
 var screen_size
 var control_mode: ControlMode
+var interactable: Interactable:
+	get():
+		if !is_instance_valid(interactable):
+			interactable = null
+		return interactable
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,9 +68,9 @@ func _physics_process(delta):
 func _input(event: InputEvent):
 	if event.is_action_pressed("warp_drive"):
 		warp_drive.emit()
+	if event.is_action_pressed("interact") and interactable:
+		interactable.interact()
 
-func _on_body_entered(body):
-	print("player entered")
 	
 func set_camera_mode(mode: CameraMode):
 	match mode:
@@ -81,3 +86,14 @@ func set_control_mode(mode: ControlMode):
 		ControlMode.STRAFE:
 			control_mode = mode
 			rotation = 0
+
+
+func _on_area_2d_area_entered(area: Area2D):
+	if area.owner is Interactable:
+		interactable = area.owner
+
+
+func _on_area_2d_area_exited(area: Area2D):
+	if area.owner == interactable:
+		print("Interactable exiting")
+		interactable = null

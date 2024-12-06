@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdpfa76v2eoi7"]
+
+[ext_resource type="PackedScene" uid="uid://bvc2a2ap2c4cf" path="res://interactables/interactable.tscn" id="1_p3lx7"]
+[ext_resource type="Script" path="res://interactables/shop_interactable.gd" id="2_tl7c3"]
+
+[node name="ShopInteractable" instance=ExtResource("1_p3lx7")]
+script = ExtResource("2_tl7c3")
+data = null

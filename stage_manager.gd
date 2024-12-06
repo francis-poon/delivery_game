@@ -17,7 +17,7 @@ var current_stage: Stage:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_stage("a")
+	set_stage("asteroid_field_a")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
