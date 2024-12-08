@@ -23,7 +23,7 @@ var interactable: Interactable:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	$AnimationPlayer.play("booster")
+	_animation_tree.set("parameters/blend_position", Vector2.ZERO)
 
 
 func _physics_process(delta):

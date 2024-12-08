@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://irp5agjsi6p7"]
 
-[ext_resource type="PackedScene" uid="uid://di884s3kqjdud" path="res://shop_item.tscn" id="1_dqtm4"]
-[ext_resource type="Script" path="res://shop.gd" id="1_uqk1t"]
+[ext_resource type="PackedScene" uid="uid://di884s3kqjdud" path="res://gui/shop/shop_item.tscn" id="1_dqtm4"]
+[ext_resource type="Script" path="res://gui/shop/shop.gd" id="1_uqk1t"]
 [ext_resource type="Script" path="res://tile_scale_container.gd" id="1_xhvl0"]
 [ext_resource type="Texture2D" uid="uid://7y68jtlnp63l" path="res://assets/[BDragon1727] Pixel UI pack 3/00.png" id="2_0lih0"]
 [ext_resource type="Texture2D" uid="uid://xhy8vvgk4edf" path="res://assets/[BDragon1727] Pixel UI pack 3/07.png" id="4_rtpm1"]
