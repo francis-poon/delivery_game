@@ -20,7 +20,7 @@ MarginContainer/constants/margin_left = 16
 MarginContainer/constants/margin_right = 16
 MarginContainer/constants/margin_top = 14
 
-[node name="Inventory" type="Control" node_paths=PackedStringArray("gold_amount_label")]
+[node name="Inventory" type="Control" node_paths=PackedStringArray("_gold_amount_label", "_inventory_menu_container")]
 texture_filter = 1
 custom_minimum_size = Vector2(500, 400)
 layout_mode = 3
@@ -29,14 +29,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
+offset_left = -250.0
 offset_top = -200.0
-offset_right = 200.0
+offset_right = 250.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w0sq5")
-gold_amount_label = NodePath("VBoxContainer/GoldDisplay/Control2/HBoxContainer/GoldAmount")
+_gold_amount_label = NodePath("VBoxContainer/GoldDisplay/Control2/HBoxContainer/GoldAmount")
+_inventory_menu_container = NodePath("VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
