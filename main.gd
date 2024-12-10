@@ -6,6 +6,7 @@ func _ready():
 	$Player.warp_drive.connect($StageManager.run_warp_drive)
 	$StageManager.stage_changed.connect(_on_stage_changed)
 	%GUI/Map.new_destination_selected.connect($StageManager._on_new_destination)
+	$StageManager.item_drop.connect(%GUI/Inventory.add_item)
 	$StageManager.warp_complete.connect(%GUI/Map._on_destination_arrived)
 	
 	$Player.set_camera_mode($Player.CameraMode.FOLLOW)

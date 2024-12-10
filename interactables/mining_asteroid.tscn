@@ -10,9 +10,9 @@ radius = 32.0624
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojev1"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="MiningAsteroid" node_paths=PackedStringArray("mining_interface") instance=ExtResource("1_fc7j2")]
+[node name="MiningAsteroid" node_paths=PackedStringArray("_mining_interface") instance=ExtResource("1_fc7j2")]
 script = ExtResource("2_4wao7")
-mining_interface = NodePath("GUI/MiningInterface")
+_mining_interface = NodePath("GUI/MiningInterface")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_rkqhs")

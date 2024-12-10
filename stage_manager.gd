@@ -2,6 +2,7 @@ extends Node2D
 
 signal stage_changed(stage_name: String, spawn_pos: Vector2)
 signal warp_complete(stage_name: String)
+signal item_drop(item_name: String, amount: int)
 
 @export var stages: Dictionary
 @export var warp_stage: PackedScene
@@ -47,12 +48,15 @@ func _on_warp_complete(stage_name: String):
 	
 func set_stage(stage_name: String):
 	if current_stage:
-		remove_child(current_stage)
+		call_deferred("remove_child", current_stage)
 		current_stage.queue_free()
 	if stage_name not in stages.keys():
 		current_stage = unknown_stage.instantiate()
 	else:
 		current_stage = stages[stage_name].instantiate()
+		
+	if current_stage.has_signal("item_drop"):
+		current_stage.item_drop.connect(_on_item_drop)
 	add_child(current_stage)
 	
 func _on_stage_changed():
@@ -61,3 +65,6 @@ func _on_stage_changed():
 func _on_new_destination(p_destination: String, p_travel_time: int):
 	destination = p_destination
 	travel_time = p_travel_time
+	
+func _on_item_drop(item_name: String, amount: int):
+	item_drop.emit(item_name, amount)

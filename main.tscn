@@ -15,11 +15,12 @@
 texture_filter = 1
 script = ExtResource("1_anftd")
 
-[node name="GUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("shop", "inventory")]
+[node name="GUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_shop", "_inventory", "_map")]
 unique_name_in_owner = true
 script = ExtResource("1_jk817")
-shop = NodePath("Shop")
-inventory = NodePath("Inventory")
+_shop = NodePath("Shop")
+_inventory = NodePath("Inventory")
+_map = NodePath("Map")
 
 [node name="Inventory" parent="GUI" instance=ExtResource("1_dujxd")]
 

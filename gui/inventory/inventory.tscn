@@ -154,21 +154,27 @@ size_flags_horizontal = 3
 
 [node name="InventoryMenuItem" parent="VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
 layout_mode = 2
+script = null
 
 [node name="InventoryMenuItem2" parent="VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
 layout_mode = 2
+script = null
 
 [node name="InventoryMenuItem3" parent="VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
 layout_mode = 2
+script = null
 
 [node name="InventoryMenuItem4" parent="VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
 layout_mode = 2
+script = null
 
 [node name="InventoryMenuItem5" parent="VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
 layout_mode = 2
+script = null
 
 [node name="InventoryMenuItem6" parent="VBoxContainer/InventoryItemList/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_auhsk")]
 layout_mode = 2
+script = null
 
 [node name="GoldDisplay" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
