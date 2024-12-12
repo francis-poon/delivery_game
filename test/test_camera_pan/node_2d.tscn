@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://diib4fwx6wfwb"]
+
+[ext_resource type="Script" path="res://test/test_camera_pan/node_2d.gd" id="1_1u45g"]
+[ext_resource type="Script" path="res://test/test_camera_pan/camera_2d.gd" id="1_kogmf"]
+[ext_resource type="Texture2D" uid="uid://doxm38mnjv52g" path="res://assets/[Screaming Base Studios] Seamless Space Backgrounds 512x512/Small 512x512/Blue Nebula/Blue_Nebula_06-512x512.png" id="2_c2n1d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njjwt"]
+atlas = ExtResource("2_c2n1d")
+region = Rect2(15, 93, 121, 82)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_camera", "_label")]
+texture_filter = 1
+script = ExtResource("1_1u45g")
+_camera = NodePath("Camera2D")
+_label = NodePath("CanvasLayer/VBoxContainer/Label")
+
+[node name="SpaceBg(2Frames)(64X64)" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_njjwt")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("_sprite", "_zoom_label")]
+ignore_rotation = false
+zoom = Vector2(2.25, 2.25)
+script = ExtResource("1_kogmf")
+_sprite = NodePath("../SpaceBg(2Frames)(64X64)")
+_zoom_label = NodePath("../CanvasLayer/VBoxContainer/Label2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2

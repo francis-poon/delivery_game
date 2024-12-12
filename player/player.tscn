@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dib4ff1qqkdph"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_wn1w7"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_wn1w7"]
 [ext_resource type="Texture2D" uid="uid://r7t3xuqgrq4j" path="res://assets/Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="2_bel75"]
 [ext_resource type="Texture2D" uid="uid://c04uyw40elseo" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters (16 x 16).png" id="3_njonk"]
 [ext_resource type="Texture2D" uid="uid://ll3mnodxsn2l" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters_right (16 x 16).png" id="4_1i0y3"]

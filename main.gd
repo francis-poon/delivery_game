@@ -1,30 +1,36 @@
 extends Node2D
 
+@export var gui: Node2D
+@export var stage_manager: Node2D
+@export var player: Node2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	%GUI/Map.new_destination_selected.connect($StageManager._on_new_destination)
+	gui.map.new_destination_selected.connect(stage_manager._on_new_destination)
 	
-	%GUI/Inventory.inventory_update.connect($StageManager._on_inventory_update)
+	gui.inventory.inventory_update.connect(stage_manager._on_inventory_update)
 	
-	$StageManager.stage_changed.connect(_on_stage_changed)
-	$StageManager.warp_complete.connect(%GUI/Map._on_destination_arrived)
-	$StageManager.item_drop.connect(%GUI/Inventory.add_item)
-	$StageManager.buy.connect(%GUI/Inventory._on_buy)
-	$StageManager.sell.connect(%GUI/Inventory._on_sell)
-	$StageManager.inventory_count_request.connect(%GUI/Inventory._on_inventory_request)
+	stage_manager.stage_changed.connect(_on_stage_changed)
+	stage_manager.stage_changed.connect(gui.map._on_destination_arrived)
+	stage_manager.item_drop.connect(gui.inventory.add_item)
+	stage_manager.buy.connect(gui.inventory._on_buy)
+	stage_manager.sell.connect(gui.inventory._on_sell)
+	stage_manager.inventory_count_request.connect(gui.inventory._on_inventory_request)
 	
-	$Player.warp_drive.connect($StageManager.run_warp_drive)
-	$Player.set_camera_mode($Player.CameraMode.FOLLOW)
-	$Player.set_control_mode($Player.ControlMode.SPIN)
+	player.warp_drive.connect(stage_manager.run_warp_drive)
+	player.set_camera_mode(player.CameraMode.FOLLOW)
+	player.set_control_mode(player.ControlMode.SPIN)
+	
+	stage_manager.set_stage("space_station_a")
 
 
 func _on_stage_changed(stage_name: String, spawn_pos: Vector2):
 	if stage_name == "warp":
-		$Player.set_camera_mode($Player.CameraMode.STATIC)
-		$Player.set_control_mode($Player.ControlMode.STRAFE)
+		player.set_camera_mode(player.CameraMode.STATIC)
+		player.set_control_mode(player.ControlMode.STRAFE)
 	else:
-		$Player.set_camera_mode($Player.CameraMode.FOLLOW)
-		$Player.set_control_mode($Player.ControlMode.SPIN)
-	$Player.position = spawn_pos
+		player.set_camera_mode(player.CameraMode.FOLLOW)
+		player.set_control_mode(player.ControlMode.SPIN)
+	player.position = spawn_pos
  

@@ -1,13 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyw3utoer4jgb"]
+[gd_scene load_steps=8 format=3 uid="uid://dyw3utoer4jgb"]
 
 [ext_resource type="Script" path="res://gui/inventory/inventory.gd" id="1_w0sq5"]
 [ext_resource type="Script" path="res://tile_scale_container.gd" id="2_r56y3"]
-[ext_resource type="Texture2D" uid="uid://7y68jtlnp63l" path="res://assets/[BDragon1727] Pixel UI pack 3/00.png" id="3_ynros"]
+[ext_resource type="Texture2D" uid="uid://be83s8dyr4584" path="res://resources/textures/menu_border.tres" id="3_7u1vi"]
 [ext_resource type="PackedScene" uid="uid://d2gfevptkhot1" path="res://gui/inventory/inventory_menu_item.tscn" id="4_auhsk"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hjkus"]
-atlas = ExtResource("3_ynros")
-region = Rect2(0, 32, 48, 16)
 
 [sub_resource type="Theme" id="Theme_uwk8b"]
 
@@ -63,7 +59,7 @@ tile_scale = 2.5
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Title/TileScaleContainer2"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_hjkus")
+texture = ExtResource("3_7u1vi")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -101,7 +97,7 @@ tile_scale = 2.5
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/InventoryItemList/TileScaleContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_hjkus")
+texture = ExtResource("3_7u1vi")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -197,7 +193,7 @@ tile_scale = 2.5
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/GoldDisplay/Control2/TileScaleContainer2"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_hjkus")
+texture = ExtResource("3_7u1vi")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6

@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://k1de11a4cjiv"]
+
+[ext_resource type="Script" path="res://gui/map/poi_button.gd" id="1_xvmyc"]
+[ext_resource type="Texture2D" uid="uid://dhqntljwr353k" path="res://assets/Mini Pixel Pack 3/Projectiles/Player_square_shot (16 x 16).png" id="2_bwuuv"]
+[ext_resource type="Texture2D" uid="uid://3snhojlm8imt" path="res://assets/Mini Pixel Pack 3/Projectiles/Player_charged_donut_shot (16 x 16).png" id="2_vk45k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf6nw"]
+atlas = ExtResource("2_bwuuv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aacin"]
+texture = SubResource("AtlasTexture_uf6nw")
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsxqa"]
+atlas = ExtResource("2_vk45k")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nsua4"]
+texture = SubResource("AtlasTexture_qsxqa")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by21y"]
+atlas = ExtResource("2_vk45k")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4o5j3"]
+texture = SubResource("AtlasTexture_by21y")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nbh0"]
+atlas = ExtResource("2_vk45k")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xabxh"]
+texture = SubResource("AtlasTexture_6nbh0")
+
+[sub_resource type="Theme" id="Theme_vdxo3"]
+Button/styles/disabled = SubResource("StyleBoxTexture_aacin")
+Button/styles/hover = SubResource("StyleBoxTexture_nsua4")
+Button/styles/normal = SubResource("StyleBoxTexture_4o5j3")
+Button/styles/pressed = SubResource("StyleBoxTexture_xabxh")
+
+[node name="POIButton" type="Control" node_paths=PackedStringArray("_label", "_button")]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xvmyc")
+_label = NodePath("HBoxContainer/Label")
+_button = NodePath("HBoxContainer/Button")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_vdxo3")
+toggle_mode = true
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "test"
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
