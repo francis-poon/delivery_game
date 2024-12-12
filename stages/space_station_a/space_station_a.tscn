@@ -12,6 +12,7 @@ region = Rect2(0, 0, 640, 360)
 [node name="SpaceStationA" type="Node2D" node_paths=PackedStringArray("_shop")]
 script = ExtResource("1_8sevi")
 _shop = NodePath("ShopInteractable")
+id = "space_station_a"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1

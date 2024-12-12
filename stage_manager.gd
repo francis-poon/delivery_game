@@ -1,7 +1,7 @@
 extends Node2D
 
 signal stage_changed(stage_name: String, spawn_pos: Vector2)
-signal warp_complete(stage_name: String)
+#signal warp_complete(stage_name: String)
 signal item_drop(item_name: String, amount: int)
 signal buy(item_name: StringName, quantity: int, cost: int)
 signal sell(item_name: StringName, quantity: int, cost: int)
@@ -18,10 +18,6 @@ var current_stage: Stage:
 	set(value):
 		current_stage = value
 		_on_stage_changed()
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	set_stage("space_station_a")
 
 	
 func run_warp_drive():
@@ -43,7 +39,6 @@ func _on_warp_complete(stage_name: String):
 	print("Warp complete")
 	print("Arriving at {0}".format([stage_name]))
 	set_stage(stage_name)
-	warp_complete.emit(stage_name)
 	
 func set_stage(stage_name: String):
 	if current_stage:

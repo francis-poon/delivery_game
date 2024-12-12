@@ -1,19 +1,19 @@
-extends CanvasLayer
+extends Node2D
 
-@export var _shop: Control
-@export var _inventory: Control
-@export var _map: Control
+@export var inventory: Control
+@export var map: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for child in get_children():
-		child.hide()
+	inventory.hide()
+	map.disable()
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("toggle_map"):
-		_map.visible = !_map.visible
+		map.toggle()
+		#inventory.visible = false
 	if event.is_action_pressed("toggle_inventory"):
-		_inventory.visible = !_inventory.visible
+		inventory.visible = !inventory.visible
 
 	
 func show_gui(gui_name: String) -> void:

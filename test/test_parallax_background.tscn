@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://mxumd4omjab2"]
 
-[ext_resource type="Script" path="res://test_parallax_background.gd" id="1_6hi2p"]
+[ext_resource type="Script" path="res://test/test_parallax_background.gd" id="1_6hi2p"]
 [ext_resource type="Texture2D" uid="uid://crlguhcf45cn3" path="res://assets/Foozle_2DS0015_Void_EnvironmentPack/Asteroids/PNGs/Asteroid 01 - Base.png" id="1_g0i02"]
 [ext_resource type="Texture2D" uid="uid://cqiki0k4liqh0" path="res://assets/Foozle_2DS0015_Void_EnvironmentPack/Backgrounds/PNGs/Condesed/Starry background  - Layer 01 - Void.png" id="2_hh3wm"]
 

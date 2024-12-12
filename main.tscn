@@ -3,27 +3,36 @@
 [ext_resource type="Script" path="res://main.gd" id="1_anftd"]
 [ext_resource type="PackedScene" uid="uid://dyw3utoer4jgb" path="res://gui/inventory/inventory.tscn" id="1_dujxd"]
 [ext_resource type="Script" path="res://gui.gd" id="1_jk817"]
-[ext_resource type="PackedScene" uid="uid://b75q7mlcfdw4t" path="res://player/map.tscn" id="5_e2as1"]
-[ext_resource type="PackedScene" uid="uid://dib4ff1qqkdph" path="res://player.tscn" id="5_g1by3"]
+[ext_resource type="PackedScene" uid="uid://b75q7mlcfdw4t" path="res://gui/map/map.tscn" id="5_e2as1"]
+[ext_resource type="PackedScene" uid="uid://dib4ff1qqkdph" path="res://player/player.tscn" id="5_g1by3"]
 [ext_resource type="PackedScene" uid="uid://c6c3lkn26t5d0" path="res://stages/stage_a.tscn" id="7_c2w1g"]
 [ext_resource type="PackedScene" uid="uid://b4n77golip3n4" path="res://stages/stage_b.tscn" id="8_er5rc"]
 [ext_resource type="PackedScene" uid="uid://bbmgpqy46naw5" path="res://stages/asteroid_field_a/asteroid_field_a.tscn" id="9_3xyxj"]
 [ext_resource type="PackedScene" uid="uid://d13bbobip6h1v" path="res://stages/space_station_a/space_station_a.tscn" id="10_s3rwy"]
 [ext_resource type="PackedScene" uid="uid://d03pw3ya3wrj5" path="res://stages/stage_manager.tscn" id="12_nf7nn"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("gui", "stage_manager", "player")]
 texture_filter = 1
 script = ExtResource("1_anftd")
+gui = NodePath("GUI")
+stage_manager = NodePath("StageManager")
+player = NodePath("Player")
 
-[node name="GUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_inventory", "_map")]
-unique_name_in_owner = true
+[node name="GUI" type="Node2D" parent="." node_paths=PackedStringArray("inventory", "map")]
 script = ExtResource("1_jk817")
-_inventory = NodePath("Inventory")
-_map = NodePath("Map")
+inventory = NodePath("CanvasLayer/Inventory")
+map = NodePath("CanvasLayer2/Map")
 
-[node name="Inventory" parent="GUI" instance=ExtResource("1_dujxd")]
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
 
-[node name="Map" parent="GUI" instance=ExtResource("5_e2as1")]
+[node name="Inventory" parent="GUI/CanvasLayer" instance=ExtResource("1_dujxd")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="GUI"]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="Map" parent="GUI/CanvasLayer2" instance=ExtResource("5_e2as1")]
+z_index = 2
 
 [node name="StageManager" parent="." instance=ExtResource("12_nf7nn")]
 stages = {
