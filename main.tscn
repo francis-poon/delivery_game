@@ -43,5 +43,3 @@ stages = {
 }
 
 [node name="Player" parent="." instance=ExtResource("5_g1by3")]
-speed = 50
-rotation_speed = 3
