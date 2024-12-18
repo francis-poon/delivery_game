@@ -275,6 +275,8 @@ blend_mode = 1
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "_animation_tree")]
 texture_filter = 1
 script = ExtResource("1_wn1w7")
+speed = 50
+rotation_speed = 3
 camera = NodePath("Camera2D")
 _animation_tree = NodePath("AnimationTree")
 
