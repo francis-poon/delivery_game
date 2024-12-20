@@ -1,22 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://buawtd3fm12da"]
+[gd_scene load_steps=5 format=3 uid="uid://buawtd3fm12da"]
 
 [ext_resource type="Texture2D" uid="uid://brr4e0xn13wc0" path="res://assets/Foozle_2DS0015_Void_EnvironmentPack/Backgrounds/PNGs/Split up/Starry background  - Layer 03 - Stars.png" id="1_2ctxs"]
 [ext_resource type="Script" path="res://test/test_parallax/parallax_layer.gd" id="1_wmrb2"]
-[ext_resource type="Script" path="res://test/test_parallax/camera_2d.gd" id="2_lm4gx"]
+[ext_resource type="Texture2D" uid="uid://g4vapevcnnud" path="res://assets/Foozle_2DS0015_Void_EnvironmentPack/Backgrounds/PNGs/Split up/Starry background  - Layer 03 - Stars 2.png" id="2_4eek6"]
+[ext_resource type="PackedScene" uid="uid://dib4ff1qqkdph" path="res://player/player.tscn" id="3_6yb1l"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -101
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" node_paths=PackedStringArray("target")]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(1152, 648)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(5, 5)
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" node_paths=PackedStringArray("target")]
+motion_scale = Vector2(0.25, 0.25)
 script = ExtResource("1_wmrb2")
 target = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_4eek6")
+centered = false
+hframes = 9
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 scale = Vector2(3, 3)
 texture = ExtResource("1_2ctxs")
 centered = false
 hframes = 9
 
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2_lm4gx")
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" node_paths=PackedStringArray("target")]
+motion_scale = Vector2(4, 4)
+script = ExtResource("1_wmrb2")
+target = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_2ctxs")
+centered = false
+hframes = 9
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = 5
+scroll_base_scale = Vector2(10, 10)
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2" node_paths=PackedStringArray("target")]
+script = ExtResource("1_wmrb2")
+target = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_2ctxs")
+centered = false
+hframes = 9
+
+[node name="Player" parent="." instance=ExtResource("3_6yb1l")]
