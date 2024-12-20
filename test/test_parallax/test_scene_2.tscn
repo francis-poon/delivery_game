@@ -1,9 +1,73 @@
-[gd_scene load_steps=5 format=3 uid="uid://buawtd3fm12da"]
+[gd_scene load_steps=9 format=3 uid="uid://buawtd3fm12da"]
 
 [ext_resource type="Texture2D" uid="uid://brr4e0xn13wc0" path="res://assets/Foozle_2DS0015_Void_EnvironmentPack/Backgrounds/PNGs/Split up/Starry background  - Layer 03 - Stars.png" id="1_2ctxs"]
 [ext_resource type="Script" path="res://test/test_parallax/parallax_layer.gd" id="1_wmrb2"]
 [ext_resource type="Texture2D" uid="uid://g4vapevcnnud" path="res://assets/Foozle_2DS0015_Void_EnvironmentPack/Backgrounds/PNGs/Split up/Starry background  - Layer 03 - Stars 2.png" id="2_4eek6"]
 [ext_resource type="PackedScene" uid="uid://dib4ff1qqkdph" path="res://player/player.tscn" id="3_6yb1l"]
+[ext_resource type="Script" path="res://test/test_parallax/animation_player.gd" id="4_c1ehm"]
+
+[sub_resource type="Animation" id="Animation_p3een"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_c78a5"]
+resource_name = "sparkle"
+length = 4.50005
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j8a1o"]
+_data = {
+"RESET": SubResource("Animation_p3een"),
+"sparkle": SubResource("Animation_c78a5")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -20,13 +84,13 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_scale = 44.956
 scroll_base_scale = Vector2(5, 5)
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" node_paths=PackedStringArray("target")]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.25, 0.25)
 script = ExtResource("1_wmrb2")
-target = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 scale = Vector2(3, 3)
@@ -40,10 +104,16 @@ texture = ExtResource("1_2ctxs")
 centered = false
 hframes = 9
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" node_paths=PackedStringArray("target")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/ParallaxLayer2"]
+libraries = {
+"": SubResource("AnimationLibrary_j8a1o")
+}
+speed_scale = 2.0
+script = ExtResource("4_c1ehm")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(4, 4)
 script = ExtResource("1_wmrb2")
-target = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 scale = Vector2(3, 3)
@@ -56,9 +126,8 @@ layer = 5
 scroll_base_scale = Vector2(10, 10)
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2" node_paths=PackedStringArray("target")]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
 script = ExtResource("1_wmrb2")
-target = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
 scale = Vector2(3, 3)
