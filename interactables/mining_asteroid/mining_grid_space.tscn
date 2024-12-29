@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7odpobakjxnx"]
+
+[ext_resource type="Script" path="res://interactables/mining_asteroid/mining_grid_space.gd" id="1_jrfoo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vv2m8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emmcn"]
+bg_color = Color(1, 0.21096, 0.717921, 1)
+
+[node name="MiningGridSpace" type="Control" node_paths=PackedStringArray("_color_rect", "_progress_bar")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jrfoo")
+_color_rect = NodePath("ColorRect")
+_progress_bar = NodePath("ProgressBar")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_vv2m8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_emmcn")
+max_value = 1.0
+show_percentage = false

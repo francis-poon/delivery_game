@@ -1,0 +1,179 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckx3v0xe03d73"]
+
+[ext_resource type="Script" path="res://interactables/mining_asteroid/mining_minigame.gd" id="1_w1yjb"]
+[ext_resource type="PackedScene" uid="uid://c7odpobakjxnx" path="res://interactables/mining_asteroid/mining_grid_space.tscn" id="2_2ooc5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_surs8"]
+bg_color = Color(1, 0.15, 0, 1)
+
+[node name="MiningMinigame" type="Control" node_paths=PackedStringArray("_grid_container", "_heat_bar", "_debug_text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w1yjb")
+out_of_bounds_color = Color(1, 0, 0, 0.588235)
+columns = 10
+rows = 8
+_grid_container = NodePath("HBoxContainer/Control2/GridContainer")
+_mining_grid_space = ExtResource("2_2ooc5")
+_heat_bar = NodePath("HBoxContainer/Control3/MarginContainer/MarginContainer/ProgressBar")
+heat_up_rate = 30.0
+_debug_text = NodePath("HBoxContainer/Control/Label")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 111.0
+offset_right = 173.0
+offset_bottom = 192.0
+text = "test"
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -133.0
+offset_right = 106.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.0
+columns = 5
+
+[node name="MiningGridSpace" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace2" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace3" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace4" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace5" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace6" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace7" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace8" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace9" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace10" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace11" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace12" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace13" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace14" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace15" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace16" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace17" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace18" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MiningGridSpace19" parent="HBoxContainer/Control2/GridContainer" instance=ExtResource("2_2ooc5")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Control3" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Control3/MarginContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control3/MarginContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/Control3/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_surs8")
+fill_mode = 3
+show_percentage = false
