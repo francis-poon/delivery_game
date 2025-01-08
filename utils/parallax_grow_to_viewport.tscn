@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://l4neng6hodrd"]
+
+[ext_resource type="Script" path="res://utils/parallax_grow_to_viewport.gd" id="1_vr8b5"]
+
+[node name="ParallaxGrowToViewport" type="Node2D"]
+script = ExtResource("1_vr8b5")

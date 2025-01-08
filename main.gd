@@ -22,7 +22,7 @@ func _ready():
 	player.set_camera_mode(player.CameraMode.FOLLOW)
 	player.set_control_mode(player.ControlMode.SPIN)
 	
-	stage_manager.set_stage("space_station_a")
+	stage_manager.set_stage("asteroid_field_a")
 
 
 func _on_stage_changed(stage_name: String, spawn_pos: Vector2):
