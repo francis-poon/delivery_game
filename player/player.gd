@@ -19,6 +19,8 @@ var interactable: Interactable:
 		if !is_instance_valid(interactable):
 			interactable = null
 		return interactable
+		
+var _input_vector: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,15 +32,8 @@ func _physics_process(delta):
 	match control_mode:
 		ControlMode.SPIN:
 			var input_dir = Vector2.ZERO
-			var rotate_dir = 0
-			if Input.is_action_pressed("move_right"):
-				rotate_dir = 1
-			if Input.is_action_pressed("move_left"):
-				rotate_dir = -1
-			if Input.is_action_pressed("move_up"):
-				input_dir.y -= 1
-			if Input.is_action_pressed("move_down"):
-				input_dir.y += 1
+			input_dir.y = _input_vector.y
+			var rotate_dir = _input_vector.x
 			velocity = input_dir.rotated(rotation) * speed
 			
 			var animation_vector = input_dir
@@ -48,15 +43,7 @@ func _physics_process(delta):
 			rotate(rotate_dir * rotation_speed * delta)
 			move_and_collide(velocity * delta)
 		ControlMode.STRAFE:
-			var input_dir = Vector2.ZERO
-			if Input.is_action_pressed("move_right"):
-				input_dir.x += 1
-			if Input.is_action_pressed("move_left"):
-				input_dir.x -= 1
-			if Input.is_action_pressed("move_up"):
-				input_dir.y -= 1
-			if Input.is_action_pressed("move_down"):
-				input_dir.y += 1
+			var input_dir = _input_vector
 			velocity = input_dir.rotated(rotation) * speed
 			
 			_animation_tree.set("parameters/blend_position", velocity.normalized())
@@ -71,6 +58,17 @@ func _input(event: InputEvent):
 	if event.is_action_pressed("interact") and interactable:
 		interactable.interact()
 
+func _unhandled_input(event: InputEvent):
+	_input_vector = Vector2.ZERO
+	if Input.is_action_pressed("move_right"):
+		_input_vector.x += 1
+	if Input.is_action_pressed("move_left"):
+		_input_vector.x += -1
+	
+	if Input.is_action_pressed("move_up"):
+		_input_vector.y += -1
+	if Input.is_action_pressed("move_down"):
+		_input_vector.y += 1
 	
 func set_camera_mode(mode: CameraMode):
 	match mode:

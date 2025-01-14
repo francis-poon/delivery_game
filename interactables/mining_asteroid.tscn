@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://y0osb204fqig"]
+[gd_scene load_steps=7 format=3 uid="uid://y0osb204fqig"]
 
 [ext_resource type="PackedScene" uid="uid://bvc2a2ap2c4cf" path="res://interactables/interactable.tscn" id="1_fc7j2"]
 [ext_resource type="Script" path="res://interactables/mining_asteroid.gd" id="2_4wao7"]
 [ext_resource type="Texture2D" uid="uid://crlguhcf45cn3" path="res://assets/Foozle_2DS0015_Void_EnvironmentPack/Asteroids/PNGs/Asteroid 01 - Base.png" id="3_rkqhs"]
+[ext_resource type="PackedScene" uid="uid://ckx3v0xe03d73" path="res://interactables/mining_asteroid/mining_minigame.tscn" id="4_1o2i0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_00pvv"]
 radius = 32.0624
@@ -12,7 +13,7 @@ bg_color = Color(1, 1, 1, 1)
 
 [node name="MiningAsteroid" node_paths=PackedStringArray("_mining_interface") instance=ExtResource("1_fc7j2")]
 script = ExtResource("2_4wao7")
-_mining_interface = NodePath("GUI/MiningInterface")
+_mining_interface = NodePath("GUI/MiningMinigame")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_rkqhs")
@@ -47,4 +48,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ojev1")
 
+[node name="MiningMinigame" parent="GUI" index="1" instance=ExtResource("4_1o2i0")]
+visible = false
+
 [connection signal="pressed" from="GUI/MiningInterface/Button" to="." method="_on_button_pressed"]
+[connection signal="mining_complete" from="GUI/MiningMinigame" to="." method="_on_mining_complete"]

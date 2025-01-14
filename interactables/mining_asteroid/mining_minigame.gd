@@ -68,6 +68,9 @@ func _ready():
 	is_game_over = false
 
 func _process(delta):
+	if !visible:
+		return
+	
 	_check_game_over()
 	if is_game_over:
 		return
@@ -75,6 +78,8 @@ func _process(delta):
 	_update_heat_bar(delta)
 
 func _input(event: InputEvent):
+	if !visible:
+		return
 	if is_game_over:
 		return
 	
@@ -88,7 +93,7 @@ func _input(event: InputEvent):
 		new_position.x -= 1
 	if event.is_action_pressed("move_down"):
 		new_position.x += 1
-		
+	get_viewport().set_input_as_handled()
 	new_position.y = clamp(new_position.y, 0, columns - 1)
 	new_position.x = clamp(new_position.x, 0, rows - 1)
 	
