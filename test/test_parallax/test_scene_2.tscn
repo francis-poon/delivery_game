@@ -134,3 +134,4 @@ centered = false
 hframes = 9
 
 [node name="Player" parent="." instance=ExtResource("3_6yb1l")]
+rotation_speed = 10.0
